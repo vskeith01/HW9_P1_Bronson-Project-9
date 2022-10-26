@@ -3,10 +3,13 @@
 
 using namespace std;
 
-//functions
-void printMatrix(int matrix[][7], int N_ROWS, int N_COLUMNS);
+////////////////////////functions////////////
+void printMatrix(int matrix[][5], int N_ROWS, int N_COLUMNS);
+void fillMatrix5(int matrix[][5], int n_rows);
+void copyArray(int list1[], int list2[], int src, int tar, int numOfElements);
+void calcGrades(const int scores[][5],int n_rows);
+void fillMatrix7(int matrix[][7], int n_rows);
 
-void fillMatrix(int matrix[][7], int n_rows, int n_collums);
 
 int main() {
 
@@ -16,19 +19,22 @@ int main() {
   cout << "How many students are there? " << endl;
   cin >> students;
   
-  int grades[][7]{};
+  int scores[][5]{};    // matrix with the scores each student got on each test
   
-  fillMatrix(grades, students, collums);
-  printMatrix(grades, students, collums);
+  fillMatrix(scores, students);
+  printMatrix(scores, students, collums);
+
+  int grades[][7]{}; // matrix with the scores and subsequent grades
   
   
   return 0;
   }
 
 
+
 /* This funcion fills the matrix*/
 
-void fillMatrix(int matrix[][7], int n_rows, int n_collums)
+void fillMatrix(int matrix[][5], int n_rows)
 {
   int row, col, grade, ave, weighted_ave;
   int student_num = 1;
@@ -46,22 +52,34 @@ void fillMatrix(int matrix[][7], int n_rows, int n_collums)
         for(col = 1; col < 5; col++){
           cin >> grade;
            matrix[row][col] = grade;
-          }
+          }  // relpace with if else statemtn?
        }
+return;
+}
 
-    for (row = 0; row < n_rows; row++){
-        for(col = 5; col == 5; col++){
-          /// calculate average and then output itave = 
-          matrix[row][col] = grade;
-        }
-            
-       }
+/* This function adds the calculated grades to the students score matrix*/
+
+void calcGrades(const int scores[][5],int n_rows){
+
+int collum = 0;
+int grades[][7]{};
+  
+  if (collum < 5){
+    for (int col = 0; col < 5; col++){
+      for (int row = 0; row < n_rows; row++){
+        grades[row][col] = scores[row][col];
+      }
+      collum++;
+    }
+  }
+  
+  
 }
 
 
 
 // function to print the matrix in a matrix with 3 columns
-void printMatrix(int matrix[][7], int N_ROWS, int N_COLUMNS)
+void printMatrix5(int matrix[][5], int N_ROWS, int N_COLUMNS)
 {
     int row, col;
     for (row = 0; row < N_ROWS; row++)
@@ -71,4 +89,21 @@ void printMatrix(int matrix[][7], int N_ROWS, int N_COLUMNS)
         
         cout << endl;    
     }
+
+  return;
+}
+
+
+void printMatrix7(int matrix[][7], int N_ROWS, int N_COLUMNS)
+{
+    int row, col;
+    for (row = 0; row < N_ROWS; row++)
+    {
+        for(col = 0; col < N_COLUMNS; col++)
+            cout << setw(6) << matrix[row][col] << " ";
+        
+        cout << endl;    
+    }
+
+  return;
 }
