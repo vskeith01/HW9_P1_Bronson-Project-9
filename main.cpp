@@ -6,6 +6,7 @@ using namespace std;
 /////////////// Function Prototypes ////////////
 void average(int matrix[][7], int row);
 void printMatrix7(int matrix[][7], int N_ROWS, int N_COLUMNS);
+void weightedAverage(int matrix[][7], int row);
 
 int main() {
 
@@ -19,7 +20,9 @@ int main() {
 
   for (int row = 0; row < 5; row++){
     average(grades, row);
-  }
+    weightedAverage(grades, row);
+    }
+  
 
   printMatrix7(grades, 5, 7);
 
@@ -34,13 +37,26 @@ int main() {
 void average(int matrix[][7], int row)
 {
 
-  int ave;
+  double ave;
   ave = (matrix[row][1] + matrix[row][2] + matrix[row][3] + matrix[row][4] ) / 4;
 
   matrix[row][5] = ave;
   
   return;
 }
+
+/* This function calculates the weighted average for one row */
+void weightedAverage(int matrix[][7], int row)
+{
+
+  double W_ave;
+  W_ave = (0.2 * matrix[row][1]) + (0.3 * matrix[row][2]) + (0.3 * matrix[row][3]) + (0.2 * matrix[row][4]);
+
+  matrix[row][6] = W_ave;
+
+  return;
+}
+
 
 /* This function prints a matrix with 7 collums*/
 void printMatrix7(int matrix[][7], int N_ROWS, int N_COLUMNS)
